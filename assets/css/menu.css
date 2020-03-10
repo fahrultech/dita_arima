@@ -17,7 +17,7 @@ File: Menu
   text-align: center;
   height: 70px;
   position: relative;
-  width: 225px;
+  width: 260px;
   z-index: 1;
 }
 .navbar-default {
@@ -85,7 +85,7 @@ File: Menu
   display: block;
 }
 .side-menu {
-  width: 225px;
+  width: 260px;
   padding-top: 10px;
   z-index: 10;
   background: #36404e;
@@ -112,7 +112,7 @@ body.fixed-left .side-menu.left {
   position: fixed;
 }
 .content-page {
-  margin-left: 225px;
+  margin-left: 260px;
   overflow: hidden;
 }
 .content-page .content {
