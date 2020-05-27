@@ -100,31 +100,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <!-- /Right-bar -->
         </div>
         <div id="modalJenisIkan" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                                    <h4 class="modal-title" id="myModalLabel">Modal Heading</h4>
-                                                </div>
-                                                <div class="modal-body form">
-                                                <form action="" class="form-horizontal">
-                                                    <div class="form-group">
-                                                        <input type="text" name="idikan" hidden>
-                                                        <label class="control-label col-md-3" for="">Nama Ikan</label>
-                                                        <div class="col-md-8">
-                                                            <input class="form-control" type="text" name="namaikan">
-                                                        </div>
-                                                    </div>
-                                                    </form>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
-                                                    <button onClick="save()" type="button" class="btn btn-primary waves-effect waves-light">Save changes</button>
-                                                </div>
-                                            
-                                            </div><!-- /.modal-content -->
-                                        </div><!-- /.modal-dialog -->
-                                    </div><!-- /.modal -->
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title" id="myModalLabel">Modal Heading</h4>
+                    </div>
+                    <div class="modal-body form">
+                    <form action="" class="form-horizontal">
+                        <div class="form-group">
+                            <input type="text" name="idikan" hidden>
+                            <label class="control-label col-md-3" for="">Nama Ikan</label>
+                            <div class="col-md-8">
+                                <input class="form-control" type="text" name="namaikan">
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
+                        <button onClick="save()" type="button" class="btn btn-primary waves-effect waves-light">Save changes</button>
+                    </div>
+                
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
         <!-- END wrapper -->
         <script>
             var resizefunc = [];

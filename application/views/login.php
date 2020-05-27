@@ -47,7 +47,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <span>ARIMA</span>
                                         </a>
                                     </h2>
-                                    <!--<h4 class="text-uppercase font-bold m-b-0">Sign In</h4>-->
                                 </div>
                                 <div class="account-content">
                                     <form class="form-horizontal" method="post"  action="<?php echo base_url('login/proses');?>">

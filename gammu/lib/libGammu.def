@@ -1353,20 +1353,17 @@ EXPORTS
     bluetooth_write @1352
     dbg_vprintf @1353
     dbg_write @1354
-    iconv @1355
-    iconv_close @1356
-    iconv_open @1357
-    lock_device @1358
-    myiswspace @1359
-    mywstrncasecmp @1360
-    mywstrncmp @1361
-    mywstrstr @1362
-    smfprintf @1363
-    smprintf @1364
-    smprintf_level @1365
-    socket_close @1366
-    socket_read @1367
-    socket_write @1368
-    strcasestr @1369
-    strchrnul @1370
-    unlock_device @1371
+    lock_device @1355
+    myiswspace @1356
+    mywstrncasecmp @1357
+    mywstrncmp @1358
+    mywstrstr @1359
+    smfprintf @1360
+    smprintf @1361
+    smprintf_level @1362
+    socket_close @1363
+    socket_read @1364
+    socket_write @1365
+    strcasestr @1366
+    strchrnul @1367
+    unlock_device @1368

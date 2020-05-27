@@ -15,6 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <title>Arima - SISTEM PERAMALAN JUMLAH PRODUKSI IKAN</title>
 
         <!-- App css -->
+        
         <link href="<?php echo base_url('assets/css/bootstrap.min.css')?>" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url('assets/css/core.css')?>" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url('assets/css/components.css')?>" rel="stylesheet" type="text/css" />
@@ -31,8 +32,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
         <![endif]-->
-
+        <style>
+            .dlabel{
+                display:none;
+            }
+        </style>
         <script src="<?php echo base_url('assets/js/modernizr.min.js')?>"></script>
+        <!--Morris Chart CSS -->
+		<link rel="stylesheet" href="<?php echo base_url('assets/chartist/css/chartist.min.css');?>" />
 
     </head>
     <body class="fixed-left">

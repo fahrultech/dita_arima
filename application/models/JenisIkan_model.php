@@ -38,6 +38,15 @@ class JenisIkan_model extends CI_Model
             $this->db->order_by(key($order), $order[key($order)]);
         }
     }
+    function getIkan(){
+        $this->db->select('IDIkan,NamaIkan');
+        $this->db->from($this->table);
+        $this->db->where('IDIkan',"1");
+        $this->db->or_where('IDIkan',"3");
+        $this->db->or_where('IDIkan',"4");
+        $query = $this->db->get();
+        return $query->result();
+    }
     function getAll(){
         return $this->db->get($this->table)->result();
     }

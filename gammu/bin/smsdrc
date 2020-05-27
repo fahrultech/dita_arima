@@ -4,9 +4,9 @@
 # Gammu configuration, this section is like section "gammu" in "gammurc" file,
 # see gammurc(5) for documentation.
 [gammu]
-#device = com75
+device = com88
 #model = 6110
-#connection = at115200
+connection = at115200
 #synchronizetime = yes
 #logfile = gammulog # this is not used at all in SMSD mode
 #logformat = textall
@@ -30,7 +30,7 @@
 # General SMSD settings, see gammu-smsdrc(5) for detailed description.
 [smsd]
 # SMSD service to use, one of FILES, MYSQL, PGSQL, DBI
-service = files
+service = SQL
 # PIN for SIM card
 PIN = 1234
 # File (or stderr, syslog, eventlog) where information will be logged
@@ -58,14 +58,14 @@ sendtimeout = 30
 #skipsmscnumber = +48602123456
 
 # Database backends congfiguration
-user = gammu
-password = gammupassword
+user = root
+password = 
 pc = localhost
 # pc can also contain port or socket path after colon (eg. localhost:/path/to/socket)
-database = sms
+database = dita_arima
 
 # DBI configuration
-driver = sqlite
+driver = native_mysql
 # driverspath = /usr/lib/dbd/
 # Database directory for sqlite
 # dbdir = /var/lib/smsd

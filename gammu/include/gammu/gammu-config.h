@@ -163,17 +163,17 @@
 /* #undef HAVE_SYS_IOCTL_H */
 #endif
 #ifndef HAVE_MYSQL_MYSQL_H
-/* #undef HAVE_MYSQL_MYSQL_H */
+#define HAVE_MYSQL_MYSQL_H
 #endif
 /* ODBC support */
 #define ODBC_FOUND
 /* Do we have libdbi ? */
 /* #undef LIBDBI_FOUND */
 #ifndef HAVE_POSTGRESQL_LIBPQ_FE_H
-/* #undef HAVE_POSTGRESQL_LIBPQ_FE_H */
+#define HAVE_POSTGRESQL_LIBPQ_FE_H
 #endif
 #ifndef HAVE_PQESCAPESTRINGCONN
-/* #undef HAVE_PQESCAPESTRINGCONN */
+#define HAVE_PQESCAPESTRINGCONN
 #endif
 #ifndef HAVE_SYS_UTSNAME_H
 /* #undef HAVE_SYS_UTSNAME_H */
@@ -342,7 +342,7 @@
 
 /* Iconv support */
 #define ICONV_FOUND
-#define ICONV_SECOND_ARGUMENT_IS_CONST
+/* #undef ICONV_SECOND_ARGUMENT_IS_CONST */
 
 /* CURL support */
 #define CURL_FOUND

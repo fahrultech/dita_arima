@@ -33,13 +33,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <li class="has_sub">
                                 <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-email"></i><span> SMS Gateway </span> <span class="menu-arrow"></span></a>
                                 <ul class="list-unstyled">
-                                    <li><a href="email-inbox.html"> Pesan Masuk</a></li>
-                                    <li><a href="email-read.html"> Pesan Terkirim</a></li>
-                                    <li><a href="email-compose.html"> Pesan Gagal</a></li>
+                                    <li><a href="<?php echo site_url("Sms");?>"> Sms</a></li>
+                                    <li><a href="<?php echo site_url("Inbox");?>"> Pesan Masuk</a></li>
+                                    <li><a href="<?php echo site_url("Sent");?>"> Pesan Terkirim</a></li>
+                                    <li><a href="<?php echo site_url("SentFailed");?>"> Pesan Gagal</a></li>
                                 </ul>
                             </li>
                             <li class="has_sub">
-                                <a href="<?php echo site_url('Peramalan');?>" class="waves-effect"><i class="mdi mdi-chart-arc"></i><span> Peramalan </span></a>
+                                <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-chart-arc"></i><span> Peramalan </span> <span class="menu-arrow"></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="<?php echo site_url('Peramalan');?>"> Kecamatan</a></li>
+                                    <li><a href="<?php echo site_url("PeramalanAlatTangkap");?>"> Alat Tangkap</a></li>
+                                </ul>
                             </li>
                         </ul>
                     </div>
