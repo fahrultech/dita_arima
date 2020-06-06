@@ -19,7 +19,12 @@ class Sms_model extends CI_Model{
              ]
          ];
      }
-
+     function getNoHP(){
+         $this->db->select('NoHP,NamaKelompok');
+         $this->db->from('kelompoknelayan');
+         $query = $this->db->get();
+         return $query->result();
+     }
      public function getDefaultValues(){
         return [
             'DestinationNumber' => '',
@@ -28,7 +33,7 @@ class Sms_model extends CI_Model{
      }
 
      public function formatPhoneNumber($num)
-    {
+     {
         $noHP = $num;
         $pos  = strpos($noHP, '0', 0);
 
@@ -37,7 +42,7 @@ class Sms_model extends CI_Model{
         }
 
         return $noHP;
-    }
+     }
 
      public function insert($data){
         $data["DestinationNumber"] = $this->formatPhoneNumber(
@@ -46,4 +51,5 @@ class Sms_model extends CI_Model{
         $this->db->insert($this->table, $data);
         return $this->db->insert_id();
      }
+    
 }

@@ -58,3 +58,79 @@ Thu 2020/04/30 18:25:23 gammu-smsd[15920]: Inserting phone info
 Thu 2020/04/30 22:00:44 gammu-smsd[15920]: Error getting send status of message: Unknown error. (UNKNOWN[27])
 Fri 2020/05/01 14:14:09 gammu-smsd[15920]: Error getting SMS status: No response in specified timeout. Probably phone not connected. (TIMEOUT[14])
 Fri 2020/05/01 14:14:21 gammu-smsd[15920]: Error getting security status: No response in specified timeout. Probably phone not connected. (TIMEOUT[14])
+Wed 2020/06/03 12:28:52 gammu-smsd[14960]: Connected to Database: dita_arima on localhost
+Wed 2020/06/03 12:28:53 gammu-smsd[14960]: Connected to Database native_mysql: dita_arima on localhost
+Wed 2020/06/03 12:28:53 gammu-smsd[14960]: Created Windows RW shared memory at 001F0000
+Wed 2020/06/03 12:28:53 gammu-smsd[14960]: Starting phone communication...
+Wed 2020/06/03 12:29:00 gammu-smsd[14960]: Inserting phone info
+Wed 2020/06/03 13:11:44 gammu-smsd[14960]: Error getting SMS status: No response in specified timeout. Probably phone not connected. (TIMEOUT[14])
+Wed 2020/06/03 13:11:56 gammu-smsd[14960]: Error getting security status: No response in specified timeout. Probably phone not connected. (TIMEOUT[14])
+Wed 2020/06/03 13:11:56 gammu-smsd[14960]: You might want to set CheckSecurity = 0 to avoid checking security status
+Wed 2020/06/03 13:12:08 gammu-smsd[14960]: Error getting security status: No response in specified timeout. Probably phone not connected. (TIMEOUT[14])
+Wed 2020/06/03 13:12:08 gammu-smsd[14960]: You might want to set CheckSecurity = 0 to avoid checking security status
+Wed 2020/06/03 13:12:08 gammu-smsd[14960]: Already hit 3 errors
+Wed 2020/06/03 13:12:08 gammu-smsd[14960]: Terminating communication: Entry is empty. (EMPTY[22])
+Wed 2020/06/03 13:12:08 gammu-smsd[14960]: Starting phone communication...
+Wed 2020/06/03 13:12:08 gammu-smsd[14960]: Can't open device: Error opening device. Unknown, busy or no permissions. (DEVICEOPENERROR[2])
+Wed 2020/06/03 13:56:37 gammu-smsd[8604]: Connected to Database: dita_arima on localhost
+Wed 2020/06/03 13:56:37 gammu-smsd[8604]: Connected to Database native_mysql: dita_arima on localhost
+Wed 2020/06/03 13:56:37 gammu-smsd[8604]: Created Windows RW shared memory at 001B0000
+Wed 2020/06/03 13:56:37 gammu-smsd[8604]: Starting phone communication...
+Wed 2020/06/03 13:56:45 gammu-smsd[8604]: Inserting phone info
+Wed 2020/06/03 14:16:16 gammu-smsd[8604]: Read 1 messages
+Wed 2020/06/03 14:52:56 gammu-smsd[8604]: Read 1 messages
+Wed 2020/06/03 15:12:30 gammu-smsd[8604]: Read 1 messages
+Wed 2020/06/03 17:37:26 gammu-smsd[8604]: Error getting SMS status: No response in specified timeout. Probably phone not connected. (TIMEOUT[14])
+Wed 2020/06/03 17:37:38 gammu-smsd[8604]: Error getting security status: No response in specified timeout. Probably phone not connected. (TIMEOUT[14])
+Wed 2020/06/03 17:37:38 gammu-smsd[8604]: You might want to set CheckSecurity = 0 to avoid checking security status
+Wed 2020/06/03 17:37:50 gammu-smsd[8604]: Error getting security status: No response in specified timeout. Probably phone not connected. (TIMEOUT[14])
+Wed 2020/06/03 17:37:50 gammu-smsd[8604]: You might want to set CheckSecurity = 0 to avoid checking security status
+Wed 2020/06/03 17:37:50 gammu-smsd[8604]: Already hit 3 errors
+Wed 2020/06/03 17:37:50 gammu-smsd[8604]: Terminating communication: Entry is empty. (EMPTY[22])
+Wed 2020/06/03 17:37:50 gammu-smsd[8604]: Starting phone communication...
+Wed 2020/06/03 17:37:50 gammu-smsd[8604]: Can't open device: Error opening device. Unknown, busy or no permissions. (DEVICEOPENERROR[2])
+Thu 2020/06/04 07:21:51 gammu-smsd[24856]: Connected to Database: dita_arima on localhost
+Thu 2020/06/04 07:21:51 gammu-smsd[24856]: Connected to Database native_mysql: dita_arima on localhost
+Thu 2020/06/04 07:21:51 gammu-smsd[24856]: Created Windows RW shared memory at 00680000
+Thu 2020/06/04 07:21:51 gammu-smsd[24856]: Starting phone communication...
+Thu 2020/06/04 07:21:59 gammu-smsd[24856]: Inserting phone info
+Thu 2020/06/04 07:35:59 gammu-smsd[24856]: Read 1 messages
+Thu 2020/06/04 07:38:27 gammu-smsd[24856]: Read 1 messages
+Thu 2020/06/04 08:16:03 gammu-smsd[24856]: Read 1 messages
+Thu 2020/06/04 14:16:26 gammu-smsd[23796]: Connected to Database: dita_arima on localhost
+Thu 2020/06/04 14:16:26 gammu-smsd[23796]: Connected to Database native_mysql: dita_arima on localhost
+Thu 2020/06/04 14:16:26 gammu-smsd[23796]: Created Windows RW shared memory at 00700000
+Thu 2020/06/04 14:16:26 gammu-smsd[23796]: Starting phone communication...
+Thu 2020/06/04 14:16:34 gammu-smsd[23796]: Inserting phone info
+Thu 2020/06/04 14:16:35 gammu-smsd[23796]: Read 3 messages
+Thu 2020/06/04 14:16:58 gammu-smsd[23796]: Read 1 messages
+Thu 2020/06/04 14:19:22 gammu-smsd[23796]: Read 1 messages
+Thu 2020/06/04 14:21:58 gammu-smsd[23796]: Read 1 messages
+Thu 2020/06/04 14:24:44 gammu-smsd[23796]: Read 1 messages
+Thu 2020/06/04 14:29:36 gammu-smsd[23796]: Read 1 messages
+Thu 2020/06/04 14:32:00 gammu-smsd[23796]: Read 1 messages
+Fri 2020/06/05 04:08:55 gammu-smsd[23796]: Read 1 messages
+Fri 2020/06/05 04:40:51 gammu-smsd[23796]: Read 1 messages
+Fri 2020/06/05 05:58:01 gammu-smsd[23796]: Read 1 messages
+Fri 2020/06/05 06:13:37 gammu-smsd[23796]: Read 1 messages
+Fri 2020/06/05 06:19:11 gammu-smsd[23796]: Read 1 messages
+Fri 2020/06/05 14:00:24 gammu-smsd[23796]: Error getting security status: No response in specified timeout. Probably phone not connected. (TIMEOUT[14])
+Fri 2020/06/05 14:00:24 gammu-smsd[23796]: You might want to set CheckSecurity = 0 to avoid checking security status
+Fri 2020/06/05 14:00:36 gammu-smsd[23796]: Error getting security status: No response in specified timeout. Probably phone not connected. (TIMEOUT[14])
+Fri 2020/06/05 14:00:36 gammu-smsd[23796]: You might want to set CheckSecurity = 0 to avoid checking security status
+Fri 2020/06/05 14:17:31 gammu-smsd[23796]: Error getting security status: No response in specified timeout. Probably phone not connected. (TIMEOUT[14])
+Fri 2020/06/05 14:17:32 gammu-smsd[23796]: You might want to set CheckSecurity = 0 to avoid checking security status
+Fri 2020/06/05 14:17:32 gammu-smsd[23796]: Already hit 3 errors
+Fri 2020/06/05 14:17:32 gammu-smsd[23796]: Terminating communication: Entry is empty. (EMPTY[22])
+Fri 2020/06/05 14:17:32 gammu-smsd[23796]: Starting phone communication...
+Fri 2020/06/05 14:17:32 gammu-smsd[23796]: Can't open device: Error opening device. Unknown, busy or no permissions. (DEVICEOPENERROR[2])
+Sat 2020/06/06 06:36:03 gammu-smsd[26416]: Connected to Database: dita_arima on localhost
+Sat 2020/06/06 06:36:03 gammu-smsd[26416]: Connected to Database native_mysql: dita_arima on localhost
+Sat 2020/06/06 06:36:03 gammu-smsd[26416]: Created Windows RW shared memory at 001D0000
+Sat 2020/06/06 06:36:03 gammu-smsd[26416]: Starting phone communication...
+Sat 2020/06/06 06:36:10 gammu-smsd[26416]: Inserting phone info
+Sat 2020/06/06 06:36:11 gammu-smsd[26416]: Error getting send status of message: Unknown error. (UNKNOWN[27])
+Sat 2020/06/06 06:36:13 gammu-smsd[26416]: Error getting send status of message: Unknown error. (UNKNOWN[27])
+Sat 2020/06/06 06:38:15 gammu-smsd[26416]: Error getting send status of message: Unknown error. (UNKNOWN[27])
+Sat 2020/06/06 06:38:17 gammu-smsd[26416]: Error getting send status of message: Unknown error. (UNKNOWN[27])
+Sat 2020/06/06 06:43:19 gammu-smsd[26416]: Error getting send status of message: Unknown error. (UNKNOWN[27])

@@ -29,6 +29,17 @@ class PeramalanAlatTangkap_model extends CI_Model
         $this->db->where('IDAlatTangkap',$at);
         $this->db->where('IDIkan',$id);
         $this->db->where('Tahun >=',$ta);
+        $this->db->where('Tahun <=',2019);
+        $this->db->order_by('Tahun,Bulan');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    function getDataByAlatTangkapAndJenisPredik($at,$id,$ta){
+        $this->db->select('Bulan,Tahun,JumlahTangkapan');
+        $this->db->from($this->table);
+        $this->db->where('IDAlatTangkap',$at);
+        $this->db->where('IDIkan',$id);
+        $this->db->where('Tahun',$ta);
         $this->db->order_by('Tahun,Bulan');
         $query = $this->db->get();
         return $query->result();

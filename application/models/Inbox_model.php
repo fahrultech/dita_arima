@@ -6,7 +6,7 @@ class Inbox_model extends CI_Model
 {
     public $table = 'inbox';
     public $id = 'ID';
-    public $order = array('ID' => 'asc');
+    public $order = array('ReceivingDateTime' => 'desc');
     public $columnOrder = array('ReceivingDateTime');
     public $columnSearch = array('SenderNumber');
 

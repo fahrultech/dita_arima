@@ -12,8 +12,8 @@
 	},
 	"require": {
 		"php": ">=7.1",
-		"php-ai/php-ml": "^0.8.0",
-		"setasign/fpdf": "1.8.1"
+		"setasign/fpdf": "1.8.1",
+		"php-ai/php-ml": "^0.8.0"
 	},
 	"suggest": {
 		"paragonie/random_compat": "Provides better randomness in PHP 5.x"

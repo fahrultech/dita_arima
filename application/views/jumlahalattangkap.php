@@ -51,13 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <label for="" class="col-md-1 control-label">Tahun</label>
                             <div class="col-md-2">
                                 <select name="tahun" id="tahun" class="form-control">
-                                    <option value="2014">2014</option>
-                                    <option value="2015">2015</option>
-                                    <option value="2016">2016</option>
-                                    <option value="2017">2017</option>
-                                    <option value="2018">2018</option>
-                                    <option value="2019">2019</option>
-                                    <option value="2020">2020</option>
+                                   
                                 </select>
                             </div>
                             <button onclick="getData()" class="btn btn-primary">Lihat Jumlah</button>
@@ -153,6 +147,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <script src="<?php echo base_url('assets/js/jquery.core.js')?>"></script>
     <script src="<?php echo base_url('assets/js/jquery.app.js')?>"></script>
     <script>
+        const d = new Date();
+        const n = d.getFullYear();
+        let optYear;
+        for(let i=2014;i<=n+1;i++){
+            optYear += `<option value=${i}>${i}</option>`
+        }
+        document.querySelector('select[name="tahun"]').innerHTML = optYear;
         $('table').hide();
         getData = () => {
             const bulan = document.querySelector('[name="bulan"]').value;

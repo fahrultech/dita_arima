@@ -10,24 +10,6 @@ class Arima {
     public function __construct(){
         
     }
-    function getCoefficients($idikan,$type,$order){
-        $c = array([[[0.6896,0.6608],[0.8957,-0.2968,0.6824]],[],[]],[[],[],[]],[[],[],[]]);
-        $result = array();
-         switch($idikan){
-             case 1:
-                  switch($type){
-                      case 1:
-                        switch($order){
-                            case 1:
-                                $result[] = $c[0][0][0];
-                                break;
-                            case 2:
-                                $result[] = $c[0][0][1];
-                        }
-                  }
-         }
-         return $result;
-    }
     public function getACF($data,$lag){
         $ref = array();
         $diff = array();
@@ -109,120 +91,59 @@ class Arima {
         
         switch($order){
             case 1 :
-                for($i=13;$i<count($latih);$i++){
+                for($i=12;$i<count($latih);$i++){
                     $target[] = $latih[$i];
-                    $samples[] = [$latih[$i-1],$latih[$i-13]];
+                    $samples[] = [$latih[$i-1],$latih[$i-12]];
                  }
                 break;
             case 2 :
-                for($i=14;$i<count($latih);$i++){
+                for($i=12;$i<count($latih);$i++){
                     $target[] = $latih[$i];
-                    $samples[] = [$latih[$i-1],$latih[$i-2],$latih[$i-14]];
+                    $samples[] = [$latih[$i-1],$latih[$i-2],$latih[$i-12]];
                  }
                 break;
             case 3 :
-            for($i=15;$i<count($latih);$i++){
+            for($i=12;$i<count($latih);$i++){
                     $target[] = $latih[$i];
-                    $samples[] = [$latih[$i-1],$latih[$i-2],$latih[$i-3],$latih[$i-15]];
+                    $samples[] = [$latih[$i-1],$latih[$i-2],$latih[$i-3],$latih[$i-12]];
                 }
             break;
         }
-        
-        
         $regression->train($samples,$target);
         //echo json_encode(array($regression->getIntercept(),$regression->getCoefficients()));
         return array($regression->getIntercept(),$regression->getCoefficients());
     }
-    function getMACoefficients($data,$error){
-         $regression = new Phpml\Regression\LeastSquares();
-         $y = array();
-         $yminone = array();
-         $ma = array();
-         for($i=0;$i<count($data)-1;$i++){
-            $row = array();
-            $y[] = $data[$i+1];
-            $row= [$data[$i],$error[$i]];
-            $ma[] = $row;
-         }
-         $regression->train($ma,$y);
-         return array($regression->getIntercept(),$regression->getCoefficients());
-    }
-    function prediksi(){
-        
-    }
-    function getSARIMA($uji,$latih){
+    function getSARIMA($uji,$latih,$periode=0){
       $result = array();
       $order = 2;
-      $arcoeff = $this->getARCoefficients($uji,$order);
-      $getCo = $this->getCoefficients(1,1,$order);
-      $arresult = $this->getARResult($uji,$arcoeff,$latih,$order);
-      $ariresult = $this->getARMAResult($uji,$arcoeff,$latih,$order);
-      //$ariresult = $this->getARIResult($uji,$latih);
+      $arcoeff = $this->getARCoefficients($latih,$order);
+      $arresult = $this->getARResult($uji,$arcoeff,$latih,$order,$periode);
       return $arresult;
     }
-    function getARResult($uji,$coeff,$latih,$order){
+    function getARResult($uji,$coeff,$latih,$order,$periode){
         $result = array();
-        //$c = $coeff[0];
         switch($order){
             case 1:
-                $result[] = $coeff[0]+$coeff[1][0]*$latih[12]+$coeff[1][1]*$uji[0];
+                $result[] = $coeff[0]+$coeff[1][0]*$uji[12]+$coeff[1][1]*$uji[0];
                 for($i=1;$i<count($uji);$i++){
-                    $result[] = $coeff[0]+$coeff[1][0]*$result[$i-1]+$coeff[1][1]*$uji[$i];
+                    $result[] = $coeff[0]+$coeff[1][1]*$result[$i-1]+$coeff[1][0]*$uji[$i];
                 }
                 break;
             case 2:
-                $result[] = $coeff[0]+$coeff[1][0]*$latih[12]+$coeff[1][1]*$latih[11]+$coeff[1][2]*$uji[0];
-                $result[] = $coeff[0]+$coeff[1][0]*$result[0]+$coeff[1][1]*$latih[12]+$coeff[1][2]*$uji[1];
-                for($i=2;$i<count($uji);$i++){
-                    $result[] = $coeff[0]+$coeff[1][0]*$result[$i-1]+$coeff[1][1]*$result[$i-2]+$coeff[1][2]*$uji[$i];
+                $result[] = $coeff[0]+$coeff[1][2]*$uji[11]+$coeff[1][1]*$uji[10]+$coeff[1][0]*$uji[0];
+                $result[] = $coeff[0]+$coeff[1][2]*$result[0]+$coeff[1][1]*$uji[11]+$coeff[1][0]*$uji[1];
+                for($i=2;$i<$periode;$i++){
+                    $result[] = $coeff[0]+$coeff[1][2]*$result[$i-1]+$coeff[1][1]*$result[$i-2]+$coeff[1][0]*$uji[$i];
                 }
-                // $result[] = $c[0]*$latih[12]+$c[1]*$latih[11]+$c[2]*$uji[0];
-                // $result[] = $c[0]*$result[0]+$c[1]*$latih[12]+$c[2]*$uji[1];
-                // for($i=2;$i<count($uji);$i++){
-                //     $result[] = $c[0]*$result[$i-1]+$c[1]*$result[$i-2]+$c[2]*$uji[$i];
-                // }
                 break;
             case 3:
-                $result[] = $coeff[0]+$coeff[1][0]*$latih[12]+$coeff[1][1]*$latih[11]+$coeff[1][2]*$latih[10]+$coeff[1][3]*$uji[0];
-                $result[] = $coeff[0]+$coeff[1][0]*$result[0]+$coeff[1][1]*$latih[12]+$coeff[1][2]*$latih[11]+$coeff[1][3]*$uji[1];
-                $result[] = $coeff[0]+$coeff[1][0]*$result[1]+$coeff[1][1]*$result[0]+$coeff[1][2]*$latih[12]+$coeff[1][3]*$uji[2];
+                $result[] = $coeff[0]+$coeff[1][3]*$uji[12]+$coeff[1][2]*$uji[11]+$coeff[1][1]*$uji[10]+$coeff[1][0]*$uji[0];
+                $result[] = $coeff[0]+$coeff[1][3]*$result[0]+$coeff[1][2]*$uji[12]+$coeff[1][1]*$uji[11]+$coeff[1][0]*$uji[1];
+                $result[] = $coeff[0]+$coeff[1][3]*$result[1]+$coeff[1][2]*$result[0]+$coeff[1][1]*$uji[12]+$coeff[1][0]*$uji[2];
                 for($i=3;$i<count($uji);$i++){
-                    $result[] = $coeff[0]+$coeff[1][0]*$result[$i-1]+$coeff[1][1]*$result[$i-2]+$coeff[1][2]*$result[$i-3]+$coeff[1][3]*$uji[$i];
+                    $result[] = $coeff[0]+$coeff[1][3]*$result[$i-1]+$coeff[1][2]*$result[$i-2]+$coeff[1][1]*$result[$i-3]+$coeff[1][0]*$uji[$i];
                 }
                 break;
-        }
-        array_splice($result,0,1);
-        $result[] = 4;
-        return $result;
-    }
-    function getARMAResult($uji,$coeff,$latih,$order){
-        $result = array();
-        switch($order){
-            case 1:
-                $result[] = $coeff[0]+$coeff[1][0]*($latih[12]-$latih[11])+$latih[12]+$coeff[1][1]*$uji[0];
-                $result[] = $coeff[0]+$coeff[1][0]*($result[0]-$latih[12])+$result[0]+$coeff[1][1]*$uji[1];
-                for($i=2;$i<count($uji);$i++){
-                    $result[] = $coeff[0]+$coeff[1][0]*($result[$i-1]-$result[$i-2])+$result[$i-1]+$coeff[1][1]*$uji[$i];
-                }
-                break;
-            case 2:
-                $result[] = $coeff[0]+$coeff[1][0]*($latih[12]-$latih[11])+$latih[12]-$coeff[1][1]*($latih[11]-$latih[10])+$latih[11]+$coeff[1][2]*$uji[0];
-                $result[] = $coeff[0]+$coeff[1][0]*($result[0]-$latih[12])+$result[0]-$coeff[1][1]*($latih[12]-$latih[11])+$latih[12]+$coeff[1][2]*$uji[1];
-                $result[] = $coeff[0]+$coeff[1][0]*($result[1]-$result[0])+$result[1]-$coeff[1][1]*($result[0]-$latih[12])+$result[0]+$coeff[1][2]*$uji[2];
-                for($i=3;$i<count($uji);$i++){
-                    $result[] = $coeff[0]+$coeff[1][0]*($result[$i-1]-$result[$i-2])+$result[$i-1]-$coeff[1][1]*($result[$i-2]-$result[$i-3])+$result[$i-2]+$coeff[1][2]*$uji[$i];
-                }
-        }
-        array_splice($result,0,1);
-        $result[] = 4;
-        return $result;
-    }
-    function getARIResult($uji,$latih){
-        $result = array();
-        $result[] = 0.1145*($latih[12]-$latih[11])+$latih[12]+0.6228*$uji[0];
-        $result[] = 0.1145*($result[0]-$latih[12])+$latih[12]+0.6228*$uji[0];
-        for($i=2;$i<count($uji);$i++){
-            $result[] = 0.1145*($result[$i-1]-$result[$i-2])+$latih[$i-1]+0.6228*$uji[$i];
         }
         return $result;
     }

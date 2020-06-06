@@ -37,6 +37,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <li><a href="<?php echo site_url("Inbox");?>"> Pesan Masuk</a></li>
                                     <li><a href="<?php echo site_url("Sent");?>"> Pesan Terkirim</a></li>
                                     <li><a href="<?php echo site_url("SentFailed");?>"> Pesan Gagal</a></li>
+                                    <li><a href="<?php echo site_url("AutoReply");?>"> Auto Reply</a></li>
                                 </ul>
                             </li>
                             <li class="has_sub">

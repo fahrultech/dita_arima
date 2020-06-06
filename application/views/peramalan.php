@@ -32,7 +32,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <div class="col-lg-4">
                                       <label for="" class="control-label">Jenis Ikan</label>
                                       <select name="jenisikan" id="" class="form-control">
-                                            <option value="0">--Pilih Jenis Ikan --</option>
+                                            <option value="">--Pilih Jenis Ikan --</option>
                                         <?php foreach($jenisikan as $ji){
                                            ?><option value="<?php echo $ji->IDIkan; ?>"><?php echo $ji->NamaIkan; ?></option>
                                         <?php
@@ -43,7 +43,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <div class="col-lg-4">
                                       <label for="" class="control-label">Kecamatan</label>
                                       <select name="kecamatan" id="" class="form-control">
-                                             <option value="0">--Pilih Kecamatan --</option>
+                                             <option value="">--Pilih Kecamatan --</option>
                                       <?php foreach($kecamatan as $kc){
                                            ?><option value="<?php echo $kc->IDKecamatan; ?>"><?php echo $kc->NamaKecamatan; ?></option>
                                         <?php
@@ -55,28 +55,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                       <button onClick="getData()" class="btn btn-success" type="button">Pilih</button>
                                     </div>
                                   </div>
-                                  <!-- <div style="margin-top:20px" class="row">
-                                    <h3>Data Training</h3>
+                                  <div style="margin-top:20px" class="row">
+                                    <h3>Periode Prediksi</h3>
                                     <div class="col-lg-4">
                                         <label for="" class="control-label">Awal</label>
-                                        <select name="awal" id="" class="form-control">
-                                                <option value="0">--Pilih Tahun Awal --</option>
-                                                <option value="2014">2014</option>
+                                        <select name="periode" id="" class="form-control">
+                                                <option value="">--Pilih Periode --</option>
+                                                <option value="1">1 Bulan</option>
+                                                <option value="2">2 Bulan</option>
+                                                <option value="3">3 Bulan</option>
+                                                <option value="4">4 Bulan</option>
+                                                <option value="5">5 Bulan</option>
+                                                <option value="6">6 Bulan</option>
+                                                <option value="7">7 Bulan</option>
+                                                <option value="8">8 Bulan</option>
+                                                <option value="9">9 Bulan</option>
+                                                <option value="10">10 Bulan</option>
+                                                <option value="11">11 Bulan</option>
+                                                <option value="12">12 Bulan</option>
                                         </select>
                                     </div>
-                                    <div class="col-lg-4">
-                                        <label for="" class="control-label">Akhir</label>
-                                        <select name="akhir" id="" class="form-control">
-                                                <option value="0">--Pilih Tahun Akhir --</option>
-                                                <option value="2014">2014</option>
-                                                <option value="2015">2015</option>
-                                                <option value="2016">2016</option>
-                                                <option value="2017">2017</option>
-                                                <option value="2018">2018</option>
-                                                <option value="2019">2019</option>
-                                        </select>
-                                    </div>
-                                  </div> -->
+                                  </div>
                                   
                                   <div class="row">
                                     <div class="col-lg-12">
@@ -101,7 +100,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                   <div class="row">
                                     <div class="col-lg-12 col-md-12">
                                        <h3 class="m-t-3 text-center dlabel">SARIMA Uji Prediksi</h3>
-                                       <div id="prediksi" class="ct-chart ct-golden-section">
+                                       <div id="prediksi">
+                                         
+                                       </div>
+                                    </div>
+                                  </div>
+                                  <div style="margin-top:50px" class="row">
+                                    <div class="col-lg-12 col-md-12">
+                                       <h3 class="m-t-3 text-center dlabel">Prediksi Produksi Ikan</h3>
+                                       <div id="predict">
                                          
                                        </div>
                                     </div>
@@ -192,26 +199,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <script src="<?php echo base_url('assets/chartist/js/chartist-plugin-tooltip.min.js');?>"></script>
         <!-- Init -->
         <script>
-          let idikan;
-          let idkecamatan;
-          let tahunawal;
-          let tahunakhir;
+          let idikan ="";
+          let idkecamatan="";
+          let periode="";
           let chartData = [];
           const bulan = ["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Aug","Sep","Okt","Nop","Des"];
           document.querySelector('[name="kecamatan"]').addEventListener('change', function(){
               idkecamatan = this.value;
-              console.log(idikan);
           });
           document.querySelector('[name="jenisikan"]').addEventListener('change', function(){
               idikan = this.value;
-              console.log(idkecamatan);
+          });
+          document.querySelector('[name="periode"]').addEventListener('change', function(){
+              periode = this.value;
           });
           let getData = () => {
+                if(idkecamatan === "" || idikan === "" || periode === ""){
+                    alert("Pilih Jenis Ikan, Kecamatan Dan Periode Prediksi");
+                }else{
                 data = {
                     "jenisikan" : idikan,
                     "kecamatan" : idkecamatan,
+                    "periode" : periode
                 }
-
                 $.ajax({
                     "url" : "<?php echo site_url('Peramalan/getdata'); ?>",
                     "type" : "POST",
@@ -228,8 +238,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         chartPACF = [];
                         numOfLags = [];
                         let prediksi = [];
+                        let predict = [];
                         chartData.push(["Bulan Tahun", "Jumlah" ]);
-                        console.log(data);
                         data[0].forEach(item => {
                            let tempData = [];
                            tempData.push(`${bulan[parseInt(item.Bulan)-1]} - ${item.Tahun}`);
@@ -261,23 +271,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         }
                         prediksi.push(["Bulan Tahun","Real","Prediksi"]);
                         chartDataPrediksi.forEach((item,index) => {
-                            if(index > 0 && index<data[2].length){
-                                let tmp = [];
+                            let tmp = [];
                             tmp.push(item[0])
                             tmp.push(item[1])
-                            tmp.push(data[2][index][1]);
+                            tmp.push(data[2][index+1][1]);
                             prediksi.push(tmp)
-                            }
-                            
                         })
-                        console.log(prediksi)
+                        predict.push(["Bulan Tahun","Prediksi"]);
+                        data[8].forEach((item,index) => {
+                            if(index > 0){
+                                let tmp = [];
+                                tmp.push(item[0]);
+                                tmp.push(item[1]);
+                                predict.push(tmp);
+                            }
+                        })
                         google.setOnLoadCallback(function() {createLineChart($('#kurva-all')[0], chartData, 'Jumlah Tangkapan Ikan', ['#4bd396'])});
                         google.setOnLoadCallback(function() {createLineChart($('#prediksi')[0], prediksi, 'Prediksi Tangkapan Ikan', ['#4bd396','#ff0000'])});
+                        google.setOnLoadCallback(function() {createLineChart($('#predict')[0], predict, 'Prediksi Tangkapan Ikan', ['#4bd396'])});
                         new Chartist.Bar('#acf',datai , options);
                         new Chartist.Bar('#pacf',dataj , options);
-                        //google.setOnLoadCallback(function() {createColumnChart($('#acf')[0], chartACF, 'Plot ACF', ['#4bd396', '#f5707a', '#3ac9d6'])});
                     }
                 })
+            }
           }
           google.charts.load('current', {packages: ['corechart']});
     

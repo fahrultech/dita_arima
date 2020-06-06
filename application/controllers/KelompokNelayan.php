@@ -54,7 +54,7 @@ class KelompokNelayan extends CI_Controller {
         $data = array(
             'NamaKelompok' => $this->input->post('namakelompok'),
             'NamaKetua' => $this->input->post('namaketua'),
-            'NoHP' => $this->input->post('nohp'),
+            'NoHP' => $this->formatPhoneNumber($this->input->post('nohp')),
             'IDDesa' => $this->input->post('namadesa'),
             'IDKecamatan' => $this->input->post('namakecamatan')
         );
@@ -69,7 +69,7 @@ class KelompokNelayan extends CI_Controller {
         $data = array(
             'NamaKelompok' => $this->input->post('namakelompok'),
             'NamaKetua' => $this->input->post('namaketua'),
-            'NoHP' => $this->input->post('nohp'),
+            'NoHP' => $this->formatPhoneNumber($this->input->post('nohp')),
             'IDDesa' => $this->input->post('namadesa'),
             'IDKecamatan' => $this->input->post('namakecamatan')
         );
@@ -79,5 +79,16 @@ class KelompokNelayan extends CI_Controller {
     function hapusKelompok($id){
         $this->NelayanKelompok_model->deleteById($id);
         echo json_encode(array("status" => TRUE));
+    }
+    public function formatPhoneNumber($num)
+    {
+        $noHP = $num;
+        $pos  = strpos($noHP, '0', 0);
+
+        if ($pos === 0) {
+            $noHP = substr_replace($noHP, '+62', 0, 1);
+        }
+
+        return $noHP;
     }
 }

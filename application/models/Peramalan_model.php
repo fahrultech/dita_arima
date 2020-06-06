@@ -29,6 +29,17 @@ class Peramalan_model extends CI_Model
         $this->db->where('IDKecamatan',$kc);
         $this->db->where('IDIkan',$id);
         $this->db->where('Tahun >=',$ta);
+        $this->db->where('Tahun <=',2019);
+        $this->db->order_by('Tahun,Bulan');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    function getDataByKecamatanAndJenisPredik($kc,$id,$ta){
+        $this->db->select('Bulan,Tahun,JumlahTangkapanIkan');
+        $this->db->from($this->table);
+        $this->db->where('IDKecamatan',$kc);
+        $this->db->where('IDIkan',$id);
+        $this->db->where('Tahun',$ta);
         $this->db->order_by('Tahun,Bulan');
         $query = $this->db->get();
         return $query->result();

@@ -8,7 +8,7 @@ class NelayanKelompok_model extends CI_Model
     public $id = 'IDKelompok';
     public $order = array('IDKelompok' => 'asc');
     public $columnOrder = array('NamaKecamatan, NamaKetua, NamaDesa, NamaKecamatan, NoHP');
-    public $columnSearch = array('NamaKecamata');
+    public $columnSearch = array('NamaKecamatan');
 
     // Konstructor
     function __construct(){
@@ -55,6 +55,9 @@ class NelayanKelompok_model extends CI_Model
         $this->_get_datatables_query();
         $query = $this->db->get();
         return $query->num_rows();
+    }
+    function count_all(){
+        return $this->db->count_all($this->table);
     }
     function insert($data)
     {

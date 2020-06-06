@@ -54,6 +54,9 @@ class Kecamatan_model extends CI_Model
         $query = $this->db->get();
         return $query->num_rows();
     }
+    function count_all(){
+        return $this->db->count_all($this->table);
+    }
     function insert($data)
     {
         $this->db->insert($this->table, $data);

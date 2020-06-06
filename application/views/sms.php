@@ -31,7 +31,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <div class="form-group">
                                         <label for="" class="control-label col-md-2">No HP</label>
                                         <div class="col-md-6">
-                                            <input type="text" name="noHP" class="form-control">
+                                            <select name="nohp" id="" class="form-control">
+                                                <option value="0">-- Pilih No HP --</option>
+                                                <?php
+                                                    foreach($NoHP as $n){
+                                                        ?>
+                                                        <option value="<?php echo $n->NoHP;?>"><?php echo $n->NamaKelompok;?></option>
+                                                    <?php
+                                                    }
+                                                ?>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
