@@ -13,7 +13,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <!-- App favicon -->
         <link rel="shortcut icon" href="<?php echo base_url('assets/images/favicon.ico');?>">
         <!-- App title -->
-        <title>Zircos - Responsive Admin Dashboard Template</title>
+        <title>Login Untuk Nelayan</title>
 
         <!-- App css -->
         <link href="<?php echo base_url('assets/css/bootstrap.min.css');?>" rel="stylesheet" type="text/css" />
@@ -44,12 +44,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <div class="text-center account-logo-box">
                                     <h2 class="text-uppercase">
                                         <a href="index.html" class="text-success">
-                                            <span>ARIMA</span>
+                                            <span>Login Nelayan</span>
                                         </a>
                                     </h2>
                                 </div>
                                 <div class="account-content">
-                                    <form class="form-horizontal" method="post"  action="<?php echo base_url('login/proses');?>">
+                                    <form class="form-horizontal" method="post"  action="<?php echo base_url('nelayanlogin/proses');?>">
                                         <div class="form-group ">
                                             <div class="col-xs-12">
                                                 <input class="form-control" name="username" type="text" required="" placeholder="Username">

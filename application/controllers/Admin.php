@@ -1,23 +1,43 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Admin extends CI_Controller {
+class Admin extends CI_Controller{
     function __construct(){
         parent::__construct();
-        $this->load->model('Login_model');
-        if (!isset($this->session->userdata['username'])) {
-			redirect(base_url("login"));
-		}
+        if($this->session->userdata('username')){
+            redirect(base_url('dashboard'));
+        }
+        $this->load->model(array('Login_model'));
     }
     function index(){
-        $this->load->view("header");
-        $this->load->view("sidebar");
-        $this->load->view("starter");
-        $this->load->view("footer");
+        $this->load->view('admin');
     }
 
-    function logout(){
-        $this->session->sess_destroy();
-        redirect(base_url('login'));
+    function proses(){
+        $this->form_validation->set_rules('username','username', 'required|trim|xss_clean');
+        $this->form_validation->set_rules('password','password', 'required|trim|xss_clean');
+
+        if($this->form_validation->run() == FALSE){
+            $this->load->view('admin');
+        }else{
+            $username = $this->input->post('username');
+            $password = $this->input->post('password');
+
+            $user = $username;
+            $pass = md5($password);
+
+            $cek = $this->Login_model->cek($user, $pass);
+
+            if($cek->num_rows() > 0){
+                foreach($cek->result() as $qad){
+                    $sess_data['username'] = $qad->username;
+                    $this->session->set_userdata($sess_data);
+                }
+                redirect(base_url('dashboard'));
+            }else{
+                $this->session->set_flashdata('result_login', '<br>Username atau Password yang anda masukka salah</br>');
+                redirect(base_url('admin'));
+            }
+        }
     }
 }

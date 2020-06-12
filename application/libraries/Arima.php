@@ -147,6 +147,13 @@ class Arima {
         }
         return $result;
     }
+    function mape($prediksi,$actual){
+        $ape = array();
+        for($i=0;$i<count($prediksi);$i++){
+            $ape[] = abs(round((($actual[$i+12]-$prediksi[$i])/$actual[$i+12])*100,4));
+        }
+        return round((array_sum($ape)/count($ape)),2);
+    }
     function Corr($x, $y){
         $length= count($x);
         $mean1=array_sum($x) / $length;

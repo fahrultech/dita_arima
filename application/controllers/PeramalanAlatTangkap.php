@@ -91,7 +91,8 @@ class PeramalanAlatTangkap extends CI_Controller {
                 $acf = $arima->getACF($dataLatih,$lag);
                 $pacf = $arima->getPACF($dataLatih,$lag,$idikan);
                 $predict = $this->predict($idikan,$idalattangkap,$periode);
-                echo json_encode(array($query2,$acf,$ramal,$pacf,$hh,$query3,$dataUji,$dataLatih,$predict));
+                $mape = $arima->mape($hh,$dataUji);
+                echo json_encode(array($query2,$acf,$ramal,$pacf,$hh,$query3,$dataUji,$dataLatih,$predict,$mape));
             }catch(Exception $e){
                 $query2=array();
                 echo json_encode(array($query2));

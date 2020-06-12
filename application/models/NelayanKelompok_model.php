@@ -70,6 +70,19 @@ class NelayanKelompok_model extends CI_Model
         $query = $this->db->get();
         return $query->row();
     }
+    function getByUsername($username){
+        $this->db->from($this->table);
+        $this->db->where('username',$username);
+        $query = $this->db->get();
+        return $query->row();
+    }
+    function getIdKecamatan($username){
+        $this->db->select('IDKecamatan');
+        $this->db->from($this->table);
+        $this->db->where('username',$username);
+        $query = $this->db->get();
+        return $query->row();
+    }
     function update($id, $data){
         $this->db->update($this->table, $data, $id);
         return $this->db->affected_rows();

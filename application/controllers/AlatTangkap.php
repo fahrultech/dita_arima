@@ -8,7 +8,7 @@ class AlatTangkap extends CI_Controller {
         parent::__construct();
         $this->load->model('AlatTangkap_model');
         if (!isset($this->session->userdata['username'])) {
-			redirect(base_url("login"));
+			redirect(base_url("admin"));
 		}
     }
     function index(){

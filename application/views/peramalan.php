@@ -85,7 +85,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                        </div>
                                     </div>
                                   </div>
-                                  <div class="row m-t-6">
+                                  <!-- <div class="row m-t-6">
                                     <div class="col-lg-6 col-md-6">
                                        <h4 class="header-title m-t-3 text-center dlabel">ACF Plot</h4>
                                        <div id="acf" class="ct-chart ct-golden-section">
@@ -96,7 +96,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                        <div id="pacf" class="ct-chart ct-golden-section">
                                        </div>
                                     </div>
-                                  </div>
+                                  </div> -->
                                   <div class="row">
                                     <div class="col-lg-12 col-md-12">
                                        <h3 class="m-t-3 text-center dlabel">SARIMA Uji Prediksi</h3>
@@ -111,6 +111,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                        <div id="predict">
                                          
                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4">
+                                        <div class="alert alert-info">
+                                            <p>Hasil Ramalan Produksi Ikan</p>
+                                            <div class="isi">
+                                                <table class="table borderless">
+                                                <thead>
+                                                <tr>
+                                                    <th>Bulan - Tahun</th>
+                                                    <th>Jumlah</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody></tbody>
+                                                </table>
+                                            </div>
+                                            <div class="mape">
+                                            <p>Nilai Error Mape : <span class="hasilmape"></span>%</p>
+                                            </div>
+                                        </div>
                                     </div>
                                   </div>
                                 </div>
@@ -220,7 +239,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 data = {
                     "jenisikan" : idikan,
                     "kecamatan" : idkecamatan,
-                    "periode" : periode
+                    "periode" : 12
                 }
                 $.ajax({
                     "url" : "<?php echo site_url('Peramalan/getdata'); ?>",
@@ -228,6 +247,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     "data" : data,
                     "dataType" : "JSON",
                     "success" : function(data){
+                        const month = new Date().getMonth()+1;
                         document.querySelectorAll('.dlabel').forEach(item => {
                             item.style.display = "block";
                         })
@@ -278,19 +298,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             prediksi.push(tmp)
                         })
                         predict.push(["Bulan Tahun","Prediksi"]);
-                        data[8].forEach((item,index) => {
-                            if(index > 0){
-                                let tmp = [];
-                                tmp.push(item[0]);
-                                tmp.push(item[1]);
-                                predict.push(tmp);
-                            }
-                        })
+                        let str = "";
+                        for(let i=month;i<parseInt(periode)+month;i++){
+                            let tmp = [];
+                            str += `<tr>
+                                         <td>${data[8][i][0]}</td>
+                                         <td>${parseFloat(data[8][i][1]).toFixed(2)}</td>
+                                    </tr>`
+                            tmp.push(data[8][i][0]);
+                            tmp.push(data[8][i][1]);
+                            predict.push(tmp);
+                        }
+                        document.querySelector('.isi tbody').innerHTML = str;
+                        document.querySelector('.hasilmape').innerHTML = data[9];
                         google.setOnLoadCallback(function() {createLineChart($('#kurva-all')[0], chartData, 'Jumlah Tangkapan Ikan', ['#4bd396'])});
                         google.setOnLoadCallback(function() {createLineChart($('#prediksi')[0], prediksi, 'Prediksi Tangkapan Ikan', ['#4bd396','#ff0000'])});
                         google.setOnLoadCallback(function() {createLineChart($('#predict')[0], predict, 'Prediksi Tangkapan Ikan', ['#4bd396'])});
-                        new Chartist.Bar('#acf',datai , options);
-                        new Chartist.Bar('#pacf',dataj , options);
+                        // new Chartist.Bar('#acf',datai , options);
+                        // new Chartist.Bar('#pacf',dataj , options);
                     }
                 })
             }

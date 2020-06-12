@@ -117,16 +117,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                     <h4 class="modal-title" id="myModalLabel">Modal Heading</h4>
                                                 </div>
                                                 <div class="modal-body form">
-                                                <form action="" class="form-horizontal">
+                                                <form action="" class="form-horizontal"  data-parsley-validate="">
                                                     <div class="form-group">
                                                         <input type="text" name="idkelompok" hidden>
                                                         <label class="control-label col-md-3" for="">Nama Kelompok</label>
                                                         <div class="col-md-8">
-                                                            <input class="form-control" type="text" name="namakelompok">
+                                                            <input require class="form-control" type="text" name="namakelompok">
                                                         </div>
                                                         <label class="control-label col-md-3" for="">Nama Ketua</label>
                                                         <div class="col-md-8">
-                                                            <input class="form-control" type="text" name="namaketua">
+                                                            <input require class="form-control" type="text" name="namaketua">
+                                                        </div>
+                                                        <label class="control-label col-md-3" for="">Username</label>
+                                                        <div class="col-md-8">
+                                                            <input class="form-control" type="text" name="username">
+                                                        </div>
+                                                        <label class="control-label col-md-3" for="">Password</label>
+                                                        <div class="col-md-8">
+                                                            <input class="form-control" type="password" name="password">
                                                         </div>
                                                         <label class="control-label col-md-3" for="">Desa</label>
                                                         <div class="col-md-8">
@@ -148,7 +156,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                         </div>
                                                         <label class="control-label col-md-3" for="">Nama Kabupaten</label>
                                                         <div class="col-md-8">
-                                                            <input readonly class="form-control" value="Malang" name="namakabupaten" type="text">
+                                                            <input required readonly class="form-control" value="Malang" name="namakabupaten" type="text">
                                                         </div>
                                                         <label class="control-label col-md-3" for="">No HP</label>
                                                         <div class="col-md-8">
@@ -186,6 +194,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <!-- App js -->
         <script src="<?php echo base_url('assets/js/jquery.core.js')?>"></script>
         <script src="<?php echo base_url('assets/js/jquery.app.js')?>"></script>
+        <script type="text/javascript" src="<?php echo base_url('assets/plugins/parsleyjs/parsley.min.js');?>"></script>
         <script type="text/javascript">
             let table, save_method;
             let url;
@@ -227,6 +236,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         $('[name="idkelompok"]').val(data.IDKelompok);
                         $('[name="namakelompok"]').val(data.NamaKelompok);
                         $('[name="namaketua"]').val(data.NamaKetua);
+                        $('[name="username"]').val(data.username);
                         $('[name="namadesa"]').val(data.IDDesa);
                         $('[name="namakecamatan"]').val(data.IDKecamatan);
                         $('[name="nohp"]').val(data.NoHP);

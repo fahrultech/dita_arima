@@ -8,7 +8,7 @@ class Sms extends CI_Controller {
         parent::__construct();
         $this->load->model('Sms_model','sms');
         if (!isset($this->session->userdata['username'])) {
-			redirect(base_url("login"));
+			redirect(base_url("admin"));
 		}
     }
     function index(){

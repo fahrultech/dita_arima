@@ -1,16 +1,16 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Login extends CI_Controller{
+class NelayanLogin extends CI_Controller{
     function __construct(){
         parent::__construct();
-        if($this->session->userdata('username')){
-            redirect(base_url('admin'));
+        if($this->session->userdata('usernelayan')){
+            redirect(base_url('nelayandashboard'));
         }
-        $this->load->model(array('Login_model'));
+        $this->load->model(array('NelayanLogin_model'));
     }
     function index(){
-        $this->load->view('login');
+        $this->load->view('nelayanlogin');
     }
 
     function proses(){
@@ -18,7 +18,7 @@ class Login extends CI_Controller{
         $this->form_validation->set_rules('password','password', 'required|trim|xss_clean');
 
         if($this->form_validation->run() == FALSE){
-            $this->load->view('login');
+            $this->load->view('nelayanlogin');
         }else{
             $username = $this->input->post('username');
             $password = $this->input->post('password');
@@ -26,17 +26,17 @@ class Login extends CI_Controller{
             $user = $username;
             $pass = md5($password);
 
-            $cek = $this->Login_model->cek($user, $pass);
+            $cek = $this->NelayanLogin_model->cek($user, $pass);
 
             if($cek->num_rows() > 0){
                 foreach($cek->result() as $qad){
-                    $sess_data['username'] = $qad->username;
+                    $sess_data['usernelayan'] = $qad->username;
                     $this->session->set_userdata($sess_data);
                 }
-                redirect(base_url('admin'));
+                redirect(base_url('nelayandashboard'));
             }else{
                 $this->session->set_flashdata('result_login', '<br>Username atau Password yang anda masukka salah</br>');
-                redirect(base_url('login'));
+                redirect(base_url('nelayanlogin'));
             }
         }
     }

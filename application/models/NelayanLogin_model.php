@@ -2,17 +2,17 @@
 if (!defined('BASEPATH'))
 exit('No direct script access allowed');
 
-class Login_model extends CI_Model{
+class NelayanLogin_model extends CI_Model{
     function cek($username, $password){
         $this->db->where('username', $username);
         $this->db->where('password', $password);
-        return $this->db->get('admin');
+        return $this->db->get('kelompoknelayan');
     }
 
     function getLoginData($user, $pass){
         $u = $user;
         $p = md5($pass);
-        $query_cekLogin = $this->db->get_where('admin',array('username' => $u, 'password' => $p));
+        $query_cekLogin = $this->db->get_where('kelompoknelayan',array('username' => $u, 'password' => $p));
         if(count($query_cekLogin->result()) > 0){
             foreach($query_cekLogin->result() as $qck){
                 foreach($query_cekLogin->result() as $qad){
@@ -25,7 +25,7 @@ class Login_model extends CI_Model{
             }
         }else{
             $this->session->set_flashdata('result_login','<br>Username atau Password yang anda masukkan salah</br>.');
-            header('location:' . base_url() . 'admin');
+            header('location:' . base_url() . 'nelayanlogin');
         }
     }
 }

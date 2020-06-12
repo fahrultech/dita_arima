@@ -8,7 +8,7 @@ class Desa extends CI_Controller {
         parent::__construct();
         $this->load->model('Desa_model');
         if (!isset($this->session->userdata['username'])) {
-			redirect(base_url("login"));
+			redirect(base_url("admin"));
 		}
     }
     function index(){

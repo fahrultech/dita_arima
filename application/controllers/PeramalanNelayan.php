@@ -1,13 +1,15 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Peramalan extends CI_Controller {
+class PeramalanNelayan extends CI_Controller {
     private $bulan = array("Jan","Feb","Mar","Apr","Mei","Jun","Jul","Aug","Sep","Okt","Nop","Des");
     function __construct(){
         parent::__construct();
         $this->load->model('JenisIkan_model','jenisikan');
         $this->load->model('Kecamatan_model','kecamatan');
         $this->load->model('Peramalan_model','peramalan');
+        $this->load->model('AlatTangkap_model','alattangkap');
+        $this->load->model('NelayanKelompok_model','kelompok');
         $this->load->library('arima');
     }
     function index(){
@@ -17,6 +19,26 @@ class Peramalan extends CI_Controller {
         $this->load->view("header");
         $this->load->view("sidebar");
         $this->load->view("peramalan",$data);
+        $this->load->view("footer");
+    }
+    function kecamatan(){
+        $username = $this->session->get_userdata()["usernelayan"];
+        $ji = $this->jenisikan->getIkan();
+        $kc = $this->kelompok->getIdKecamatan($username);
+        $data = array("jenisikan" => $ji, "kecamatan" => $kc);
+        $this->load->view("header");
+        $this->load->view("nelayansidebar");
+        $this->load->view("peramalanjumlahikannelayan",$data);
+        $this->load->view("footer");
+    }
+    function alattangkap(){
+        $username = $this->session->get_userdata()["usernelayan"];
+        $ji = $this->jenisikan->getIkan();
+        $at = $this->alattangkap->getAll();
+        $data = array("jenisikan" => $ji, "alattangkap" => $at);
+        $this->load->view("header");
+        $this->load->view("nelayansidebar");
+        $this->load->view("peramalanalattangkapnelayan",$data);
         $this->load->view("footer");
     }
     function getdata(){
@@ -56,8 +78,7 @@ class Peramalan extends CI_Controller {
         $acf = $arima->getACF($dataLatih,$lag);
         $pacf = $arima->getPACF($dataLatih,$lag,$idikan);
         $predict = $this->predict($idikan,$idkecamatan,$periode);
-        $mape = $arima->mape($hh,$dataUji);
-        return(array($query2,$acf,$ramal,$pacf,$hh,$query3,$dataUji,$dataLatih,$predict,$mape));
+        return(array($query2,$acf,$ramal,$pacf,$hh,$query3,$dataUji,$dataLatih,$predict));
     }
     function predict($idikan,$idkecamatan,$periode){
         $tahunawal = 2014;

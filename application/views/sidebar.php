@@ -47,6 +47,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <li><a href="<?php echo site_url("PeramalanAlatTangkap");?>"> Alat Tangkap</a></li>
                                 </ul>
                             </li>
+                            <li class="has_sub">
+                                <a href="<?php echo site_url('dashboard/logout');?>" class="waves-effect"><i class="mdi mdi-logout"></i><span> Logout </span></a>
+                            </li>
                         </ul>
                     </div>
                     <!-- Sidebar -->
