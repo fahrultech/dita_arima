@@ -169,6 +169,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 dataType : "JSON",
                 data :{"bulan" : bulan, "tahun":tahun},
                 success : function(data){
+                  console.log(data);
                   $('table').show();
                   $('tbody').empty();
                   for(let i=0;i<data.length;i++){
@@ -179,16 +180,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   idAlatTangkap = [...new Set(idAlatTangkap)]
                   for(let i=0;i<idAlatTangkap.length;i++){
                       let no=0;
-                      dataAlat[i]=[]
+                      dataAlat[i]=[0,0,0]
                       for(let j=0;j<data.length;j++){
                           if(data[j].IDAlatTangkap === idAlatTangkap[i]){
-                              dataAlat[i][no]=data[j].JumlahTangkapan
+                              console.log(data[j].IDIkan);
+                              if(data[j].IDIkan === '1'){
+                                 
+                                dataAlat[i][0]=data[j].JumlahTangkapan
+                              }else if(data[j].IDIkan === '3'){
+                                  
+                                dataAlat[i][1]=data[j].JumlahTangkapan
+                              }else if(data[j].IDIkan === '4'){
+                                  
+                                dataAlat[i][2]=data[j].JumlahTangkapan
+                              }
                               no++;
                           }
                       }
                   }
                   console.log(dataAlat)
                   let n=1;
+              
                   for(let i=0;i<dataAlat.length;i++){
                       html += `<tr>
                                  <td>${n}</td>

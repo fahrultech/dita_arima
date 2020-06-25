@@ -3,6 +3,7 @@ if (!defined('BASEPATH'))
 exit('No direct script access allowed');
 
 class Arima {
+    // Variabel array bulan untuk menyimpan nama-nama bulan yang akan ditampilkan
     private $bulan = array("Jan","Feb","Mar","Apr","Mei","Jun","Jul","Aug","Sep","Okt","Nop","Des");
      
     //Sarima Tuna (1,0,2)x(1,0,0,12)
@@ -10,6 +11,8 @@ class Arima {
     public function __construct(){
         
     }
+    
+    // Fungsi yang digunakan untuk menghasilkan nilai ACF
     public function getACF($data,$lag){
         $ref = array();
         $diff = array();
@@ -37,6 +40,8 @@ class Arima {
        
         return $acf;
     }
+    
+    // Fungsi yang digunakan untuk mendapatkan nilai pacf
     function getpacf($data,$lag,$id){
         $pacf = array();
         for($i=1;$i<=$lag;$i++){
@@ -45,6 +50,7 @@ class Arima {
         return $pacf;
     }
     
+    // Fungsi yang mengembalikan nilai correlasi dari dua buah array
     function reduceData($data,$lag){
         $regression = new Phpml\Regression\LeastSquares();
         $regression2 = new Phpml\Regression\LeastSquares();
@@ -84,6 +90,8 @@ class Arima {
         }
         return $this->Corr($linErr,$linErrPrev);
     }
+
+    // Fungsi yang digunakan untuk mendapatkan Coefficient untuk AR
     function getARCoefficients($latih,$order){
         $regression = new Phpml\Regression\LeastSquares();
         $samples = array();
@@ -113,6 +121,8 @@ class Arima {
         //echo json_encode(array($regression->getIntercept(),$regression->getCoefficients()));
         return array($regression->getIntercept(),$regression->getCoefficients());
     }
+
+    // Fungsi utama pada SARIMA
     function getSARIMA($uji,$latih,$periode=0){
       $result = array();
       $order = 2;
@@ -120,6 +130,8 @@ class Arima {
       $arresult = $this->getARResult($uji,$arcoeff,$latih,$order,$periode);
       return $arresult;
     }
+
+    // Fungsi yang digunakan untuk mendapatkan hasil dari arima order(1,0,0)
     function getARResult($uji,$coeff,$latih,$order,$periode){
         $result = array();
         switch($order){
@@ -147,6 +159,7 @@ class Arima {
         }
         return $result;
     }
+    // Fungsi yang digunakan untuk menghasilkan nilai mape
     function mape($prediksi,$actual){
         $ape = array();
         for($i=0;$i<count($prediksi);$i++){
@@ -154,6 +167,8 @@ class Arima {
         }
         return round((array_sum($ape)/count($ape)),2);
     }
+
+    // Fungsi untuk mengembalikan correlasi dari dua array
     function Corr($x, $y){
         $length= count($x);
         $mean1=array_sum($x) / $length;
